@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Dompdf\Dompdf;
 
 class PageController extends Controller
@@ -23,5 +24,10 @@ class PageController extends Controller
         $dompdf->render();
         // Output the generated PDF to Browser
         $dompdf->stream();
+    }
+
+    public function laravelexcel()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 }
