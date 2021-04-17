@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
+use UniSharp\LaravelFilemanager\Lfm;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PageController::class, 'home']);
+
+Route::group(['prefix' => 'files', 'middleware' => ['web', 'auth']], function () {
+    Lfm::routes();
+});
 
 require __DIR__.'/auth.php';
