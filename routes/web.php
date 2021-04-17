@@ -16,6 +16,7 @@ use UniSharp\LaravelFilemanager\Lfm;
 */
 
 Route::get('/', [PageController::class, 'home']);
+Route::get('/demo-dompdf', [PageController::class, 'dompdf']);
 
 Route::group(['prefix' => 'files', 'middleware' => ['web', 'auth']], function () {
     Lfm::routes();
