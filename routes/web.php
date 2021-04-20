@@ -19,4 +19,8 @@ Route::get('/', [PageController::class, 'home']);
 Route::get('/demo-dompdf', [PageController::class, 'dompdf']);
 Route::get('/demo-laravel-excel', [PageController::class, 'laravelexcel']);
 
+Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {
+    Lfm::routes();
+});
+
 require __DIR__.'/auth.php';
