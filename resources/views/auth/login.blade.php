@@ -7,7 +7,7 @@
   <h4 class="text-center">Login</h4>
     <div class="mb-3">
       <label for="email" class="form-label">Email address <span class="text-danger">*</span></label>
-      <input type="email" name="email" class="form-control" id="email" required>
+      <input type="text" name="email" class="form-control" id="email" required>
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Password <span class="text-danger">*</span></label>

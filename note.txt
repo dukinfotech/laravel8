@@ -1,1 +1,9 @@
-Dịch attribute validator
+Hướng dẫn cài đặt
+
+B1: Chạy command "composer install"
+B2: Tạo app key: "php artisan key:generate"
+B3: Sửa APP_URL trong file .env
+B4: Tạo shortcut thư mục laravel filemanager: "php artisan storage:link"
+B4: Clear cache: "php artisan cache:clear"
+B5: Cache: "php artisan cache:clear"
+B6: Chạy command: "php artisan migrate:fresh --seed"

@@ -40,7 +40,7 @@ abstract class EloquentRepository
     public function getAll()
     {
 
-        return $this->_model->all();
+        return $this->_model->latest()->get();
     }
 
     /**

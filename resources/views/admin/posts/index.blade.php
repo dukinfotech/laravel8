@@ -13,12 +13,11 @@
 		<table id="post-table" class="table table-bordered table-striped">
 			<thead>
 			<tr>
-				<th>#</th>
+				<th width="10">#</th>
 				<th>Tiêu đề</th>
-				<th>Ảnh thumbnail</th>
-				<th>Tóm tắt</th>
-				<th>Nội dung</th>
-				<th>Action</th>
+				<th width="200">Ảnh thumbnail</th>
+				<th>Nội dung tóm tắt</th>
+				<th width="100">Tác vụ</th>
 			</tr>
 			</thead>
 			<tbody>
