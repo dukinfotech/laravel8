@@ -8,6 +8,11 @@ use Dompdf\Dompdf;
 
 class PageController extends Controller
 {
+    public function dashboard()
+    {
+        return view('admin/statistic');
+    }
+
     public function home()
     {
         return view('pages/home');

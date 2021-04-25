@@ -23,7 +23,8 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect('/');
+                $user = Auth::guard($guard)->user();
+                return $user->hasRole(['Super Admin', 'Teacher']) ? redirect('/admin') : redirect('/');
             }
         }
 
