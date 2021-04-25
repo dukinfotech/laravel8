@@ -1,8 +1,8 @@
 <footer class="main-footer">
 	<!-- To the right -->
 	<div class="float-right d-none d-sm-inline">
-		Anything you want
+		Developed by <a href="https://www.facebook.com/bibitailor/" target="_blank">Dukinfotech</a>
 	</div>
 	<!-- Default to the left -->
-	<strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+	<div>Copyright &copy; {{ date('Y') }} All rights reserved</div>
 </footer>
