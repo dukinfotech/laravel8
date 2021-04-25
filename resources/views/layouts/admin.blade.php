@@ -8,6 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>AdminLTE 3 | Starter</title>
 
@@ -22,6 +23,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- DataTables -->
   <link rel="stylesheet" href="/assets/lib/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="/assets/lib/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="/assets/lib/adminlte/plugins/toastr/toastr.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/assets/lib/adminlte/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
@@ -67,9 +70,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
-<script src="{{ asset('assets/lib/adminlte/plugins/jquery/jquery.min.js') }}"></script>
+<script src="/assets/lib/adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="{{ asset('assets/lib/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="/assets/lib/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Toastr -->
+<script src="/assets/lib/adminlte/plugins/toastr/toastr.min.js"></script>
 <!-- DataTables -->
 <script src="/assets/lib/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/assets/lib/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -86,12 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     var successTag = $('#success-message');
     if (successTag.length > 0) {
       var msg = successTag.data('message');
-      $(document).Toasts('create', {
-        class: 'bg-success', 
-        title: 'Hệ thống',
-        body: msg,
-        autohide: true
-      });
+      toastr.success(msg)
     }
   });
 </script>

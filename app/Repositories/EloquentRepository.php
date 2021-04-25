@@ -89,7 +89,7 @@ abstract class EloquentRepository
      * @param $id
      * @return bool
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $result = $this->find($id);
         if ($result) {

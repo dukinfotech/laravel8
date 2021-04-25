@@ -39,4 +39,11 @@ class TagController extends Controller
 
         return redirect('/admin/tags')->withSuccess('Tạo thẻ tag thành công.');
     }
+
+    public function destroy($id)
+    {
+        $this->tagRepository->destroy($id);
+
+        return redirect('/admin/tags')->withSuccess('Xóa thẻ tag thành công.');;
+    }
 }

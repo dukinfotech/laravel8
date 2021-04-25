@@ -27,12 +27,9 @@
 						<a href="/admin/tags/{{ $tag->id }}/edit" class="btn btn-warning" title="Sửa">
 							<i class="fas fa-edit"></i>
 						</a>
-						<form action="/admin/tags/{{ $tag->id }}" class="d-inline" method="DELETE">
-							@csrf
-							<button type="submit" class="btn btn-danger">
-								<i class="fas fa-trash-alt"></i>
-							</button>
-						</form>
+						<button class="btn btn-danger delete-btn" data-url="/admin/tags/{{ $tag->id }}">
+							<i class="fas fa-trash-alt"></i>
+						</button>
 					</td>
 				</tr>
 				@endforeach

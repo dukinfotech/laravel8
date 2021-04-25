@@ -14,5 +14,6 @@ Route::middleware(['auth', 'role:Teacher|Super Admin'])->prefix('admin')->group(
         Route::get('/', [TagController::class, 'index']);
         Route::get('/create', [TagController::class, 'create']);
         Route::post('/', [TagController::class, 'store']);
+        Route::delete('/{id}', [TagController::class, 'destroy']);
     });
 });
