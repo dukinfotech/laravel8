@@ -4,7 +4,7 @@
 <div class="card">
 	<div class="card-header">
 		<h3 class="card-title">Danh sách thẻ tag</h3>
-		<a class="btn btn-success float-sm-right" href="/admin/tags/create">
+		<a class="btn btn-success float-right" href="/admin/tags/create">
 			Thêm mới
 		</a>
 	</div>
@@ -42,15 +42,13 @@
 
 @push('scripts')
 <script>
-	$(function () {
-    $("#tag-table").DataTable({
-			"columnDefs": [
-				{
-					"targets": 2,
-					"orderable": false
-				}
-			]
-		});
-	});
+$("#tag-table").DataTable({
+	"columnDefs": [
+		{
+			"targets": 2,
+			"orderable": false
+		}
+	]
+});
 </script>
 @endpush

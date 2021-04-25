@@ -19,35 +19,10 @@ class PostController extends Controller
 
         return view('admin.posts.index', compact('posts'));
     }
+    
 
-    public function show($id)
+    public function create()
     {
-        $post = $this->postRepository->find($id);
-
-        return view('home.post', compact('post'));
-    }
-
-    public function store(Request $request)
-    {
-        $data = $request->all();
-
-        $post = $this->postRepository->create($data);
-
-        return view('home.post', compact('post'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $data = $request->all();
-
-        $post = $this->postRepository->update($id, $data);
-
-        return view('home.post', compact('post'));
-    }
-
-    public function destroy($id)
-    {
-        $this->postRepository->delete($id);
-        return view('home.post');
+        return view('admin.posts.create');
     }
 }

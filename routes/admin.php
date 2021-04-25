@@ -9,6 +9,7 @@ Route::middleware(['auth', 'role:Teacher|Super Admin'])->prefix('admin')->group(
     Route::get('/', [PageController::class, 'dashboard']);
     Route::prefix('posts')->group(function () {
         Route::get('/', [PostController::class, 'index']);
+        Route::get('/create', [PostController::class, 'create']);
     });
     Route::prefix('tags')->group(function () {
         Route::get('/', [TagController::class, 'index']);
