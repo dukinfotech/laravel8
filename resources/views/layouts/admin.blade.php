@@ -12,9 +12,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>AdminLTE 3 | Starter</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset('assets/lib/adminlte/plugins/fontawesome-free/css/all.min.css') }}">
+  <link rel="stylesheet" href="/assets/lib/adminlte/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('assets/lib/adminlte/dist/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="/assets/lib/adminlte/dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+   <!-- Font Awesome -->
+   <link rel="stylesheet" href="/assets/lib/adminlte/plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/assets/lib/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/assets/lib/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/assets/lib/adminlte/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -52,14 +61,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
   @include('components/admin/footer')
 </div>
 <!-- ./wrapper -->
+@if(session()->has('success'))
+<div id="success-message" data-message="{{ session()->get('success') }}"></div>
+@endif
 
 <!-- REQUIRED SCRIPTS -->
-
 <!-- jQuery -->
 <script src="{{ asset('assets/lib/adminlte/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('assets/lib/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- DataTables -->
+<script src="/assets/lib/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/assets/lib/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/assets/lib/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/assets/lib/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset('assets/lib/adminlte/dist/js/adminlte.min.js') }}"></script>
+<script src="/assets/lib/adminlte/dist/js/adminlte.min.js"></script>
+<!-- jquery-validation -->
+<script src="/assets/lib/adminlte/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="/assets/lib/adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="/assets/js/admin.js"></script>
+<script>
+  $(document).ready(function () {
+    var successTag = $('#success-message');
+    if (successTag.length > 0) {
+      var msg = successTag.data('message');
+      $(document).Toasts('create', {
+        class: 'bg-success', 
+        title: 'Hệ thống',
+        body: msg,
+        autohide: true
+      });
+    }
+  });
+</script>
+@stack('scripts')
 </body>
 </html>

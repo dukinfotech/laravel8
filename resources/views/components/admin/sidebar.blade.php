@@ -33,7 +33,7 @@
 					<a href="/admin/tags" class="nav-link">
 						<i class="nav-icon fas fa-tags"></i>
 						<p>
-							Quản lý thẻ
+							Quản lý thẻ tag
 						</p>
 					</a>
 				</li>
