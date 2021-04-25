@@ -3,16 +3,17 @@
 @section('content')
 <div class="card">
 	<div class="card-header">
-		<h3 class="card-title">Thêm mới</h3>
+		<h3 class="card-title">Sửa</h3>
 	</div>
 	<!-- /.card-header -->
 	<!-- form start -->
-	<form role="form" id="tag-form" action="/admin/tags" method="POST">
+	<form role="form" id="tag-form" action="/admin/tags/{{ $tag->id }}" method="POST">
 		@csrf
+		@method('PUT')
 		<div class="card-body">
 			<div class="form-group">
 				<label for="name">Tên thẻ</label>
-				<input type="text" name="name" class="form-control" id="name" placeholder="Nhập tên thẻ" value="{{ old('name') }}">
+				<input type="text" name="name" class="form-control" id="name" placeholder="Nhập tên thẻ" value="{{ old('name', $tag->name) }}">
 			</div>
       @if ($errors->any())
         <div class="text-danger">
@@ -25,7 +26,7 @@
       @endif
 		</div>
 		<div class="card-footer">
-			<button type="submit" class="btn btn-primary">Tạo</button>
+			<button type="submit" class="btn btn-primary">Cập nhật</button>
 		</div>
 	</form>
 </div>

@@ -2,6 +2,7 @@ jQuery.validator.addMethod("noSpace", function(value, element) {
   return value.indexOf(" ") < 0;
 });
 
+// Delete confirm
 $('.delete-btn').on('click', function () {
   var url = $(this).data('url');
   var cf = confirm('Bạn có chắc muốn xóa?');
@@ -25,5 +26,32 @@ $('.delete-btn').on('click', function () {
 
     $(document.body).append(form);
     form.submit();
+  }
+});
+
+// Validate tag form
+$('#tag-form').validate({
+  rules: {
+    name: {
+      required: true,
+      maxlength: 20
+    }
+  },
+  messages: {
+    name: {
+      required: "Nhập tên thẻ",
+      maxlength: "Tối đa 20 ký tự",
+    }
+  },
+  errorElement: 'span',
+  errorPlacement: function (error, element) {
+    error.addClass('invalid-feedback');
+    element.closest('.form-group').append(error);
+  },
+  highlight: function (element, errorClass, validClass) {
+    $(element).addClass('is-invalid');
+  },
+  unhighlight: function (element, errorClass, validClass) {
+    $(element).removeClass('is-invalid');
   }
 });

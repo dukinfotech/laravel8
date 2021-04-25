@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TagFormRequest;
 use App\Repositories\TagRepository;
-use Exception;
-use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
@@ -26,18 +25,27 @@ class TagController extends Controller
         return view('admin.tags.create');
     }
 
-    public function store(Request $request)
+    public function store(TagFormRequest $tagFormRequest)
     {
-        $customAttributes = [
-            'name' => 'Tên thẻ'
-        ];
-
-        $validatedData = $request->validate([
-            'name' => 'required|unique:tags|max:20'
-        ], [], $customAttributes);
+        $validatedData = $tagFormRequest->validated();
         $this->tagRepository->store($validatedData);
 
         return redirect('/admin/tags')->withSuccess('Tạo thẻ tag thành công.');
+    }
+
+    public function edit($id)
+    {
+        $tag = $this->tagRepository->find($id);
+
+        return view('admin.tags.edit', compact('tag'));
+    }
+
+    public function update($id, TagFormRequest $tagFormRequest)
+    {
+        $validatedData = $tagFormRequest->validated();
+        $this->tagRepository->update($id, $validatedData);
+
+        return redirect('/admin/tags')->withSuccess('Cập nhật thẻ tag thành công.');
     }
 
     public function destroy($id)
