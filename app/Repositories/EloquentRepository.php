@@ -33,12 +33,24 @@ abstract class EloquentRepository
         );
     }
 
+    public function getInstance()
+    {
+        return $this->_model;
+    }
+
     /**
      * Get All
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public function getAll()
+    public function getAll($relatedTables = null)
     {
+        if ($relatedTables && is_array($relatedTables)) {
+            $x = $this->_model;
+            foreach ($relatedTables as $table) {
+                $x = $x->with($table);
+            }
+            $x->latest()->get();
+        }
 
         return $this->_model->latest()->get();
     }

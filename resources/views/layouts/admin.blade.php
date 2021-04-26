@@ -25,6 +25,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="/assets/lib/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Toastr -->
   <link rel="stylesheet" href="/assets/lib/adminlte/plugins/toastr/toastr.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="/assets/lib/adminlte/plugins/select2/css/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/assets/lib/adminlte/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
@@ -85,6 +87,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- jquery-validation -->
 <script src="/assets/lib/adminlte/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="/assets/lib/adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
+<!-- Laravel file manager -->
+<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+<!-- Tiny MCE -->
+<script src="/assets/lib/tinymce/js/tinymce/tinymce.min.js"></script>
+<!-- Select 2 -->
+<script src="/assets/lib/adminlte/plugins/select2/js/select2.min.js"></script>
 <script src="/assets/js/admin.js"></script>
 <script>
   $(document).ready(function () {

@@ -29,7 +29,7 @@ class TagFormRequest extends FormRequest
      */
     public function rules()
     {
-        $nameRule = 'required|max:20|unique:tags';
+        $nameRule = 'required|max:25|unique:tags';
         $nameRule = $this->method() == 'POST' ? $nameRule : $nameRule.',name,'.$this->id;
 
         return [

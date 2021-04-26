@@ -17,7 +17,9 @@
 				<th>Tiêu đề</th>
 				<th width="200">Ảnh thumbnail</th>
 				<th>Nội dung tóm tắt</th>
+				<th>Thẻ tag</th>
 				<th>Ngày đăng</th>
+				<th>Người đăng</th>
 				<th width="100">Tác vụ</th>
 			</tr>
 			</thead>
@@ -26,9 +28,19 @@
 				<tr>
 					<td>{{ $k+1 }}</td>
 					<td>{{ $post->title }}</td>
-					<td>{{ $post->thumbnail_path }}</td>
+					<td>
+						@if ($post->thumbnail_path)
+						<img src="{{ $post->thumbnail_path }}" alt="Thumbnail" height="50">
+						@endif
+					</td>
 					<td>{{ $post->summary }}</td>
+					<td>
+						@foreach($post->tags as $tag)
+						<span class="badge bg-primary">{{ $tag->name }}</span>
+						@endforeach
+					</td>
 					<td>{{ $post->created_at }}</td>
+					<td>{{ $post->user->name }}</td>
 					<td>
 						<a href="/admin/posts/{{ $post->id }}/edit" class="btn btn-warning" title="Sửa">
 							<i class="fas fa-edit"></i>
