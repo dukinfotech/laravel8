@@ -7,3 +7,9 @@ B4: Tạo shortcut thư mục laravel filemanager: "php artisan storage:link"
 B4: Clear cache: "php artisan cache:clear"
 B5: Cache: "php artisan cache:clear"
 B6: Chạy command: "php artisan migrate:fresh --seed"
+
+
+--------------------------------
+Mặc định sẽ có 1 account của Super Admin là: admin@example.com/@12345678
+Mặc định sẽ có 2 role là Super Admin và Teacher
+=> Chỉ user nào có quyền là Super Admin hoặc Teacher mới vào được trang Dashboard
