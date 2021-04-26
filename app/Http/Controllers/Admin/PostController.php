@@ -77,4 +77,14 @@ class PostController extends Controller
 
         return redirect('/admin/posts')->withSuccess('Cập nhật bài viết thành công.');
     }
+
+    public function destroy($id)
+    {
+        $post = $this->postRepository->find($id);
+        $this->authorize('delete', $post);
+
+        $post->delete();
+
+        return redirect('/admin/posts')->withSuccess('Xóa bài viết thành công.');;
+    }
 }
