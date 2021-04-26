@@ -42,7 +42,7 @@
 					</td>
 					<td>{{ $post->created_at }}</td>
 					<td>{{ $post->user->name }}</td>
-					<td>
+					<td class="status-badge-{{ $post->id }}" data-public="{{ $post->isPublic }}">
 						<span class="badge bg-{{ $post->isPublic ? 'success' : 'secondary' }}">
 							{{ $post->isPublic ? 'Đã phát hành' : 'Chưa phát hành' }}
 						</span>
@@ -54,7 +54,7 @@
 						</a>
 					@endcan
 					@role('Super Admin')
-						<button class="btn btn-info" onclick="changePublicStatus({{ $post->id }})" title="{{ $post->isPublic ? 'Thu hồi' : 'Phát hành' }}">
+						<button class="btn btn-info status-btn" data-post="{{ $post->id }}" title="{{ $post->isPublic ? 'Thu hồi' : 'Phát hành' }}">
 							<i class="fas fa-globe-asia"></i>
 						</button>
 					@endrole
@@ -85,14 +85,20 @@ $("#post-table").DataTable({
 });
 
 // Change Public Status Post
-function changePublicStatus(id) {
+$('.status-btn').click(function () {
+	var postId = $(this).data('post');
 	$.ajax({
 		method: 'POST',
-		url: '/admin/posts/' + id + '/update-status',
+		url: '/admin/posts/' + postId + '/update-status',
 		data: { _method: 'PUT' }
 	}).then(function () {
-		location.reload();
+		var isPublic = $('.status-badge-' + postId).data('public');
+		var html =  '<span class="badge bg-'+ (isPublic == 1 ? 'secondary' : 'success') +'">' +
+									(isPublic == 1  ? 'Chưa phát hành' : 'Đã phát hành') + 
+								'</span>';
+		$('.status-badge-' + postId).html(html);
+		$('.status-badge-' + postId).data('public', isPublic == 0 ? 1 : 0);
 	});
-}
+});
 </script>
 @endpush
