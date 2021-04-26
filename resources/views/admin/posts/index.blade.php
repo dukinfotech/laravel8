@@ -49,10 +49,10 @@
 					</td>
 					<td>
 					@can('view', $post)
-						<a href="/admin/posts/{{ $post->id }}/edit" class="btn btn-warning" title="Sửa">
+						<a href="/admin/posts/{{ $post->id }}/edit" class="btn btn-warning" title="Chỉnh sửa">
 							<i class="fas fa-edit"></i>
 						</a>
-						<button class="btn btn-danger delete-btn" data-url="/admin/posts/{{ $post->id }}">
+						<button class="btn btn-danger delete-btn" data-url="/admin/posts/{{ $post->id }}" title="Xóa">
 							<i class="fas fa-trash-alt"></i>
 						</button>
 					@endcan

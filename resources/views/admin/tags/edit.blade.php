@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
 	<div class="card-header">
-		<h3 class="card-title">Cập nhật</h3>
+		<h3 class="card-title">Chỉnh sửa</h3>
 	</div>
 	<!-- /.card-header -->
 	<!-- form start -->
@@ -26,7 +26,7 @@
       @endif
 		</div>
 		<div class="card-footer">
-			<button type="submit" class="btn btn-primary">Lưu</button>
+			<button type="submit" class="btn btn-primary">Cập nhật</button>
 		</div>
 	</form>
 </div>

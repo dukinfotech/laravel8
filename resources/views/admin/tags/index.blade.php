@@ -24,10 +24,10 @@
 					<td>{{ $k+1 }}</td>
 					<td>{{ $tag->name }}</td>
 					<td>
-						<a href="/admin/tags/{{ $tag->id }}/edit" class="btn btn-warning" title="Sửa">
+						<a href="/admin/tags/{{ $tag->id }}/edit" class="btn btn-warning" title="Chỉnh sửa">
 							<i class="fas fa-edit"></i>
 						</a>
-						<button class="btn btn-danger delete-btn" data-url="/admin/tags/{{ $tag->id }}">
+						<button class="btn btn-danger delete-btn" data-url="/admin/tags/{{ $tag->id }}" title="Xóa">
 							<i class="fas fa-trash-alt"></i>
 						</button>
 					</td>
