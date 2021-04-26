@@ -142,5 +142,12 @@ $(document).ready(function() {
   });
 
   // Initialize select2
-  $('.select2').select2()
+  $('.select2').select2();
+
+  // Setup CSRF Token for AJAX
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 });

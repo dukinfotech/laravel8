@@ -21,7 +21,7 @@
 				<th>Ngày đăng</th>
 				<th>Người đăng</th>
 				<th>Trạng thái</th>
-				<th width="100">Tác vụ</th>
+				<th>Tác vụ</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -52,6 +52,13 @@
 						<a href="/admin/posts/{{ $post->id }}/edit" class="btn btn-warning" title="Chỉnh sửa">
 							<i class="fas fa-edit"></i>
 						</a>
+					@endcan
+					@role('Super Admin')
+						<button class="btn btn-info" onclick="changePublicStatus({{ $post->id }})" title="{{ $post->isPublic ? 'Thu hồi' : 'Phát hành' }}">
+							<i class="fas fa-globe-asia"></i>
+						</button>
+					@endrole
+					@can('delete', $post)
 						<button class="btn btn-danger delete-btn" data-url="/admin/posts/{{ $post->id }}" title="Xóa">
 							<i class="fas fa-trash-alt"></i>
 						</button>
@@ -76,5 +83,16 @@ $("#post-table").DataTable({
 		}
 	]
 });
+
+// Change Public Status Post
+function changePublicStatus(id) {
+	$.ajax({
+		method: 'POST',
+		url: '/admin/posts/' + id + '/update-status',
+		data: { _method: 'PUT' }
+	}).then(function () {
+		location.reload();
+	});
+}
 </script>
 @endpush

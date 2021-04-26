@@ -78,6 +78,16 @@ class PostController extends Controller
         return redirect('/admin/posts')->withSuccess('Cập nhật bài viết thành công.');
     }
 
+    public function updateStatus($id)
+    {
+        if (! auth()->user()->hasRole('Super Admin')) {
+            abort(403);
+        }
+        $post = $this->postRepository->find($id);
+        $post->isPublic = !$post->isPublic;
+        $post->save();
+    }
+
     public function destroy($id)
     {
         $post = $this->postRepository->find($id);

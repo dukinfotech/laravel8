@@ -13,6 +13,7 @@ Route::middleware(['auth', 'role:Teacher|Super Admin'])->prefix('admin')->group(
         Route::post('/', [PostController::class, 'store']);
         Route::get('/{id}/edit', [PostController::class, 'edit']);
         Route::put('/{id}', [PostController::class, 'update']);
+        Route::put('/{id}/update-status', [PostController::class, 'updateStatus']);
         Route::delete('/{id}', [PostController::class, 'destroy']);
     });
     Route::prefix('tags')->middleware('role:Super Admin')->group(function () {
