@@ -7,6 +7,8 @@ use App\Http\Requests\PostFormRequest;
 use App\Repositories\PostRepository;
 use App\Repositories\TagRepository;
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -34,14 +36,34 @@ class PostController extends Controller
     public function store(PostFormRequest $postFormRequest)
     {
         $validatedData = $postFormRequest->validated();
-        $tagIds = $validatedData['tags'];
 
         $post = $this->postRepository->getInstance();
         $post->fill($validatedData);
 
         auth()->user()->posts()->save($post);
-        $post->tags()->attach($tagIds);
+        
+        if (array_key_exists('tags', $validatedData)) {
+            $tagIds = $validatedData['tags'];
+            $post->tags()->attach($tagIds);
+        }
 
         return redirect('/admin/posts')->withSuccess('Tạo bài viết thành công.');
+    }
+
+    public function edit($id)
+    {
+        $post = $this->postRepository->findWith($id, ['tags']);
+        $this->authorize('view', $post);
+
+        $tags = $this->tagRepository->getAll();
+
+        return view('admin.posts.edit', compact('post', 'tags'));
+    }
+
+    public function update(PostFormRequest $postFormRequest)
+    {
+        // $this->authorize('update', Post::class);
+        
+        $validatedData = $postFormRequest->validated();
     }
 }

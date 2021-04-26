@@ -67,6 +67,19 @@ abstract class EloquentRepository
         return $result;
     }
 
+    public function findWith($id, $relatedTables = null)
+    {
+        if ($relatedTables && is_array($relatedTables)) {
+            $x = $this->_model->where('id', $id);
+            foreach ($relatedTables as $table) {
+                $x = $x->with($table);
+            }
+            $x->first();
+        }
+
+        return $this->_model->where('id', $id)->first();
+    }
+
     /**
      * Create
      * @param array $attributes

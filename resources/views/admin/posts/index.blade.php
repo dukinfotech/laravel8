@@ -48,7 +48,7 @@
 						</span>
 					</td>
 					<td>
-						<a href="/admin/posts/{{ $post->id }}/edit" class="btn btn-warning" title="Sửa">
+						<a href="/admin/posts/{{ $post->id }}/edit" class="btn btn-warning @cannot('view', $post) invisible @endcannot" title="Sửa">
 							<i class="fas fa-edit"></i>
 						</a>
 						<button class="btn btn-danger delete-btn" data-url="/admin/posts/{{ $post->id }}">

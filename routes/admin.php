@@ -11,6 +11,8 @@ Route::middleware(['auth', 'role:Teacher|Super Admin'])->prefix('admin')->group(
         Route::get('/', [PostController::class, 'index']);
         Route::get('/create', [PostController::class, 'create']);
         Route::post('/', [PostController::class, 'store']);
+        Route::get('/{id}/edit', [PostController::class, 'edit']);
+        Route::put('/{id}', [PostController::class, 'update']);
     });
     Route::prefix('tags')->group(function () {
         Route::get('/', [TagController::class, 'index']);
