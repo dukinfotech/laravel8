@@ -25,5 +25,7 @@ class RoleSeeder extends Seeder
 
         // Create Teacher role
         Role::create(['name' => 'Teacher']);
+        $user2 = User::find(2);
+        $user2->assignRole(['Teacher']);
     }
 }

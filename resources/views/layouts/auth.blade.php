@@ -18,13 +18,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition login-page">
-  @if ($errors->any())
-  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    {{ $errors->first() }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  @endif
+<body class="hold-transition login-page" style="background-image:url('/assets/img/city-blur.jpg');background-size:cover;background-position: center;">
 <div class="login-box">
   <!-- <div class="login-logo">
   </div> -->

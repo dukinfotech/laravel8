@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterFormRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -14,18 +15,14 @@ class AuthController extends Controller
         return view('auth/register');
     }
 
-    public function register(Request $request)
+    public function register(RegisterFormRequest $registerFormRequest)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8',
-        ]);
+        $validatedData = $registerFormRequest->validated();
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
         ]);
 
         Auth::login($user);
@@ -39,12 +36,15 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $remember = $request->remember_me;
+        $remember = $remember == 'on';
+
         $credentials = $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
         
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
             $user = Auth::user();
             return $user->hasRole(['Super Admin', 'Teacher']) ? redirect('/admin') : redirect('/');

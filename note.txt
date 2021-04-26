@@ -10,6 +10,6 @@ B6: Chạy command: "php artisan migrate:fresh --seed"
 
 
 --------------------------------
-Mặc định sẽ có 1 account của Super Admin là: admin@example.com/@12345678
-Mặc định sẽ có 2 role là Super Admin và Teacher
-=> Chỉ user nào có quyền là Super Admin hoặc Teacher mới vào được trang Dashboard
+Mặc định sẽ có 1 account của Super Admin là: admin@email.com/@12345678 và 1 account của Teacher là: teacher@email.com/@12345678
+Mặc định sẽ có 2 role là Super Admin và Teacher (Ngoài Super Admin thì chỉ có các user có role là Teacher mới truy cập được Dashboard)
+=> Các user sau khi đăng ký sẽ ko truy cập được vào Dashboard cho đến khi Super Admin gán quyền (chưa có tính năng này)

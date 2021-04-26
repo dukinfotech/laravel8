@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card">
-  <div class="card-body register-card-body">
+  <div class="card-body">
     <p class="login-box-msg">
       <span class="h5">Thông tin đăng ký</span>
       <br><a href="/">Trang chủ</a>
@@ -45,10 +45,10 @@
       <div class="row">
         <div class="col-8">
           <div class="icheck-primary">
-            <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+            <!-- <input type="checkbox" id="agreeTerms" name="terms" value="agree">
             <label for="agreeTerms">
               I agree to the <a href="#">terms</a>
-            </label>
+            </label> -->
           </div>
         </div>
         <!-- /.col -->
@@ -58,20 +58,14 @@
         <!-- /.col -->
       </div>
     </form>
-
-    <div class="social-auth-links text-center">
-      <p>- Hoặc -</p>
-      <a href="#" class="btn btn-block btn-primary">
-        <i class="fab fa-facebook mr-2"></i>
-        Sign up using Facebook
-      </a>
-      <a href="#" class="btn btn-block btn-danger">
-        <i class="fab fa-google-plus mr-2"></i>
-        Sign up using Google+
-      </a>
-    </div>
-
-    Đã có tài khoản? <a href="/login" class="text-center">Đăng nhập</a>
+    <div>Đã có tài khoản? <a href="/login" class="text-center">Đăng nhập</a></div>
+    @if ($errors->any())
+    <ul class="text-danger">
+      @foreach($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+    @endif
   </div>
   <!-- /.form-box -->
 </div><!-- /.card -->
