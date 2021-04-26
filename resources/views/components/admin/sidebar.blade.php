@@ -29,6 +29,7 @@
 						</p>
 					</a>
 				</li>
+				@role('Super Admin')
 				<li class="nav-item">
 					<a href="/admin/tags" class="nav-link">
 						<i class="nav-icon fas fa-tags"></i>
@@ -37,6 +38,7 @@
 						</p>
 					</a>
 				</li>
+				@endrole
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->
