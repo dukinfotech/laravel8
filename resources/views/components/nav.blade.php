@@ -15,7 +15,7 @@
       </button>
       <ul class="dropdown-menu">
         <li>
-          <form action="/logout" method="post">
+          <form action="/logout" method="GET">
             @csrf
             <button class="btn btn-transparent w-100">Logout</button>
           </form>
