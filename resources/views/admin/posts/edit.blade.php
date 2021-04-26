@@ -39,7 +39,7 @@
 				<label for="tags">Thẻ tag</label>
 				<select class="select2" multiple="multiple" style="width: 100%;" name="tags[]">
 					@foreach($tags as $tag)
-					<option value="{{ $tag->id }}" {{ (old('tags', $post->tags) && in_array($tag->id, old('tags', $post->tags)->toArray())) ? 'selected' : '' }}>{{ $tag->name }}</option>
+					<option value="{{ $tag->id }}" {{ (old('tags', $post->tags) && in_array($tag->id, old('tags', $post->tags)->pluck('id')->toArray())) ? 'selected' : '' }}>{{ $tag->name }}</option>
 					@endforeach
 				</select>
 			</div>

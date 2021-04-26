@@ -60,10 +60,21 @@ class PostController extends Controller
         return view('admin.posts.edit', compact('post', 'tags'));
     }
 
-    public function update(PostFormRequest $postFormRequest)
+    public function update($id, PostFormRequest $postFormRequest)
     {
-        // $this->authorize('update', Post::class);
+        $post = $this->postRepository->find($id);
+        $this->authorize('update', $post);
         
         $validatedData = $postFormRequest->validated();
+        $post->fill($validatedData);
+
+        $post->save();
+        
+        if (array_key_exists('tags', $validatedData)) {
+            $tagIds = $validatedData['tags'];
+            $post->tags()->sync($tagIds);
+        }
+
+        return redirect('/admin/posts')->withSuccess('Cập nhật bài viết thành công.');
     }
 }
