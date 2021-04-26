@@ -20,6 +20,7 @@
 				<th>Thẻ tag</th>
 				<th>Ngày đăng</th>
 				<th>Người đăng</th>
+				<th>Trạng thái</th>
 				<th width="100">Tác vụ</th>
 			</tr>
 			</thead>
@@ -42,6 +43,11 @@
 					<td>{{ $post->created_at }}</td>
 					<td>{{ $post->user->name }}</td>
 					<td>
+						<span class="badge bg-{{ $post->isPublic ? 'success' : 'secondary' }}">
+							{{ $post->isPublic ? 'Đã phát hành' : 'Chưa phát hành' }}
+						</span>
+					</td>
+					<td>
 						<a href="/admin/posts/{{ $post->id }}/edit" class="btn btn-warning" title="Sửa">
 							<i class="fas fa-edit"></i>
 						</a>
@@ -63,7 +69,7 @@
 $("#post-table").DataTable({
 	"columnDefs": [
 		{
-			"targets": [2, 4, 5],
+			"targets": [2, 4, 5, 8],
 			"orderable": false
 		}
 	]

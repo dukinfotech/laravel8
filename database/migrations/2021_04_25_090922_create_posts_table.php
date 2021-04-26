@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('thumbnail_path')->nullable();
             $table->string('summary')->nullable();
             $table->text('content');
+            $table->boolean('isPublic')->default(false);
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
