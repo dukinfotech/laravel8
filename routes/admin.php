@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\PageController;
@@ -23,5 +24,13 @@ Route::middleware(['auth', 'role:Teacher|Super Admin'])->prefix('admin')->group(
         Route::get('/{id}/edit', [TagController::class, 'edit']);
         Route::put('/{id}', [TagController::class, 'update']);
         Route::delete('/{id}', [TagController::class, 'destroy']);
+    });
+    Route::prefix('categories')->middleware('role:Super Admin')->group(function () {
+        Route::get('/', [CategoryController::class, 'index']);
+        Route::get('/create', [CategoryController::class, 'create']);
+        Route::post('/', [CategoryController::class, 'store']);
+        Route::get('/{id}/edit', [CategoryController::class, 'edit']);
+        Route::put('/{id}', [CategoryController::class, 'update']);
+        Route::delete('/{id}', [CategoryController::class, 'destroy']);
     });
 });

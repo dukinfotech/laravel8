@@ -53,6 +53,33 @@ $(document).ready(function() {
     }
   });
 
+  // Validate category form
+  $('#category-form').validate({
+    rules: {
+      name: {
+        required: true,
+        maxlength: 25
+      }
+    },
+    messages: {
+      name: {
+        required: "Nhập tên thể loại.",
+        maxlength: "Tối đa 20 ký tự.",
+      }
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+
   // Validate post form
   $('#post-form').validate({
     rules: {

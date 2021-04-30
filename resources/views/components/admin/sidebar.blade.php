@@ -41,6 +41,14 @@
 						</p>
 					</a>
 				</li>
+				<li class="nav-item">
+					<a href="/admin/categories" class="nav-link">
+						<i class="nav-icon fab fa-elementor"></i>
+						<p>
+							Quản lý thể loại
+						</p>
+					</a>
+				</li>
 				@endrole
 			</ul>
 		</nav>
