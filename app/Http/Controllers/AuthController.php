@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -34,25 +35,28 @@ class AuthController extends Controller
         return view('auth/login');
     }
 
-    public function login(Request $request)
+    public function login(LoginFormRequest $loginFormRequest)
     {
-        $remember = $request->remember_me;
+        $credentials = $loginFormRequest->validated();
+        $remember = null;
+        if (array_key_exists('remember_me', $credentials)) {
+            $remember = $credentials['remember_me'];
+            unset($credentials['remember_me']);
+        }
         $remember = $remember == 'on';
-
-        $credentials = $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
         
         if (Auth::attempt($credentials, $remember)) {
-            $request->session()->regenerate();
+            $loginFormRequest->session()->regenerate();
             $user = Auth::user();
             return $user->hasRole(['Super Admin', 'Teacher']) ? redirect('/admin') : redirect('/');
         }
 
-        return back()->withErrors([
-            'email' => 'Sai tên tài khoản hoặc mật khẩu.',
-        ]);
+        return back()
+            ->withErrors([
+                'email' => 'Sai tên tài khoản hoặc mật khẩu.',
+            ])->withInput(
+                $loginFormRequest->except('password')
+            );;
     }
 
     public function logout(Request $request)

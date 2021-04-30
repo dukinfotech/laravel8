@@ -45,6 +45,13 @@
     <p class="mb-0">
       Chưa có tài khoản? <a href="/register" class="text-center">Đăng ký</a>
     </p>
+    @if ($errors->any())
+    <ul class="text-danger">
+      @foreach($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+    @endif
   </div>
   <!-- /.login-card-body -->
 </div>
