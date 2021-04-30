@@ -15,13 +15,14 @@
 			<tr>
 				<th width="10">#</th>
 				<th>Tiêu đề</th>
+				<th>Thể loại</th>
 				<th width="200">Ảnh thumbnail</th>
 				<th>Nội dung tóm tắt</th>
 				<th>Thẻ tag</th>
 				<th>Ngày đăng</th>
 				<th>Người đăng</th>
 				<th>Trạng thái</th>
-				<th>Tác vụ</th>
+				<th width="150">Tác vụ</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -29,6 +30,11 @@
 				<tr>
 					<td>{{ $k+1 }}</td>
 					<td>{{ $post->title }}</td>
+					<td>
+						@foreach($post->categories as $category)
+						<span class="badge bg-primary">{{ $category->name }}</span>
+						@endforeach
+					</td>
 					<td>
 						@if ($post->thumbnail_path)
 						<img src="{{ $post->thumbnail_path }}" alt="Thumbnail" height="50">
@@ -78,7 +84,7 @@
 $("#post-table").DataTable({
 	"columnDefs": [
 		{
-			"targets": [2, 4, 5, 8],
+			"targets": [2, 3, 5, 9],
 			"orderable": false
 		}
 	]

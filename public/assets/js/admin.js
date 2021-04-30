@@ -87,6 +87,9 @@ $(document).ready(function() {
         required: true,
         maxlength: 60,
       },
+      "categories[]": {
+        required: true,
+      },
       summary: {
         maxlength: 255,
       },
@@ -98,6 +101,9 @@ $(document).ready(function() {
       title: {
         required: 'Nhập tiêu đề bài viết.',
         maxlength: 'Tối đa 60 ký tự.',
+      },
+      "categories[]": {
+        required: 'Chọn thể loại bài viết.'
       },
       summary: {
         maxlength: 'Tối đa 255 ký tự.'

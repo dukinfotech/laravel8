@@ -6,16 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostFormRequest;
 use App\Repositories\PostRepository;
 use App\Repositories\TagRepository;
-use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Models\User;
+use App\Repositories\CategoryRepository;
 
 class PostController extends Controller
 {
-    public function __construct(PostRepository $postRepository, TagRepository $tagRepository)
+    public function __construct(PostRepository $postRepository, TagRepository $tagRepository, CategoryRepository $categoryRepository)
     {
         $this->postRepository = $postRepository;
         $this->tagRepository = $tagRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function index()
@@ -29,8 +28,9 @@ class PostController extends Controller
     public function create()
     {
         $tags = $this->tagRepository->getAll();
+        $categories = $this->categoryRepository->getAll();
 
-        return view('admin.posts.create', compact('tags'));
+        return view('admin.posts.create', compact('tags', 'categories'));
     }
 
     public function store(PostFormRequest $postFormRequest)
@@ -47,17 +47,21 @@ class PostController extends Controller
             $post->tags()->attach($tagIds);
         }
 
+        $categoryIds = $validatedData['categories'];
+        $post->categories()->attach($categoryIds);
+
         return redirect('/admin/posts')->withSuccess('Tạo bài viết thành công.');
     }
 
     public function edit($id)
     {
-        $post = $this->postRepository->findWith($id, ['tags']);
+        $post = $this->postRepository->findWith($id, ['tags', 'categories']);
         $this->authorize('view', $post);
 
         $tags = $this->tagRepository->getAll();
+        $categories = $this->categoryRepository->getAll();
 
-        return view('admin.posts.edit', compact('post', 'tags'));
+        return view('admin.posts.edit', compact('post', 'tags', 'categories'));
     }
 
     public function update($id, PostFormRequest $postFormRequest)
@@ -74,6 +78,9 @@ class PostController extends Controller
             $tagIds = $validatedData['tags'];
             $post->tags()->sync($tagIds);
         }
+
+        $categoryIds = $validatedData['categories'];
+        $post->categories()->attach($categoryIds);
 
         return redirect('/admin/posts')->withSuccess('Cập nhật bài viết thành công.');
     }

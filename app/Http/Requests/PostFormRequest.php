@@ -13,6 +13,7 @@ class PostFormRequest extends FormRequest
             'thumbnail_path' => 'Đường dẫn ảnh thumbnail',
             'summary' => 'Nội dung tóm tắt',
             'tags' => 'Thẻ tag',
+            'categories' => 'Thể loại',
             'content' => 'Nội dung chính'
         ];
     }
@@ -41,6 +42,7 @@ class PostFormRequest extends FormRequest
             'thumbnail_path' => 'max:255|nullable',
             'summary' => 'max:255|nullable',
             'tags.*' => 'exists:tags,id',
+            'categories.*' => 'required|exists:categories,id',
             'content' => 'required'
         ];
     }

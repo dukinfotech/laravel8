@@ -15,6 +15,14 @@
 				<input type="text" name="title" class="form-control" id="title" placeholder="Nhập tiêu đề" value="{{ old('title') }}">
 			</div>
 			<div class="form-group">
+				<label for="categories">Thể loại <span class="text-danger">*</span></label>
+				<select class="select2" multiple="multiple" style="width: 100%;" name="categories[]">
+					@foreach($categories as $category)
+					<option value="{{ $category->id }}" {{ (old('categories') && in_array($category->id, old('categories'))) ? 'selected' : '' }}>{{ $category->name }}</option>
+					@endforeach
+				</select>
+			</div>
+			<div class="form-group">
 				<label for="thumbnail-path">Ảnh thumbnail</label>
 				<div class="input-group">
 					<div class="input-group-prepend">
